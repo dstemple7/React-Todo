@@ -1,13 +1,71 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
+import ToDo from "./components/Todo"
+import ToDoForm from "./components/TodoForm"
+import ToDoList from "./components/TodoList"
+import "./components/Todo.css"
+
+const todos = [
+  {
+    todo: 'Complete MVP',
+    id: Date.now(),
+    completed:false
+  },
+  {
+    todo: "Lost 100 lbs",
+    id: Date.now()+1,
+    completed:false
+  }
+]
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
+  constructor(){
+    super()
+    this.state = {
+      todos: todos
+    }
+  }
+  addToDo = toDoName => {
+    const newToDo = {
+      todo: toDoName,
+      id: new Date(),
+      complete:false
+    }
+    this.setState({
+      todos: [...this.state.todos, newToDo]
+    })
+  }
+  toggleToDo = toDoId => {
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if (todo.id ===toDoId) {
+          return {
+            ...todo,
+            completed: !todo.completed
+            } 
+          } else {
+            return todo
+        }
+      })
+    })
+  }
+  
   render() {
     return (
       <div>
-        <h2>Welcome to your Todo App!</h2>
+        <h2>2DN = My To DONE List</h2>
+        <div>
+          <ToDoList
+            toggleToDo={this.toggleToDo}
+            todos={this.state.todos}
+          />
+        </div>
+        <div>
+          <ToDoForm addToDo={this.addToDo}/>
+        </div>
       </div>
     );
   }
