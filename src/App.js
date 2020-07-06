@@ -32,7 +32,7 @@ class App extends React.Component {
     const newToDo = {
       todo: toDoName,
       id: new Date(),
-      complete:false
+      completed:false
     }
     this.setState({
       todos: [...this.state.todos, newToDo]
@@ -52,6 +52,11 @@ class App extends React.Component {
       })
     })
   }
+
+  clearCompleted = () => {
+    const stillToDo = this.state.todos.filter(todo => !todo.completed)
+    this.setState({ todos: [...stillToDo]})
+  }
   
   render() {
     return (
@@ -64,7 +69,10 @@ class App extends React.Component {
           />
         </div>
         <div>
-          <ToDoForm addToDo={this.addToDo}/>
+          <ToDoForm 
+            addToDo={this.addToDo}
+            clearCompleted={this.clearCompleted}
+          />
         </div>
       </div>
     );
