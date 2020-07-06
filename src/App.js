@@ -7,13 +7,23 @@ import "./components/Todo.css"
 
 const todos = [
   {
-    todo: 'Complete MVP',
+    todo: 'Complete MVP for Lambda Schizzoool',
     id: Date.now(),
     completed:false
   },
   {
     todo: "Lost 100 lbs",
     id: Date.now()+1,
+    completed:false
+  },
+  {
+    todo: "Vote for Kanye",
+    id: Date.now()+2,
+    completed:false
+  },
+  {
+    todo: "Tell Shanda's TL that Shanda deserves a raise",
+    id: Date.now()+3,
     completed:false
   }
 ]
@@ -60,9 +70,9 @@ class App extends React.Component {
   
   render() {
     return (
-      <div>
-        <h2>2DN = My To DONE List</h2>
-        <div>
+      <div className="App">
+        <h2>2DN <br></br> My To DONE List</h2>
+        <div className="todos">
           <ToDoList
             toggleToDo={this.toggleToDo}
             todos={this.state.todos}

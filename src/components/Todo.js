@@ -2,7 +2,7 @@ import React from 'react'
 
 const ToDo = props => {
   return (
-    <div
+    <div className="todo"
       onClick={() => props.toggleToDo(props.todo.id)}
       className={`todo${props.todo.completed ? ' completed' : ''}`}
     >
